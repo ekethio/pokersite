@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h2> Please register <h2>
+<div style='margin-top : 30px'>
+    <form method = 'post' class = 'w3-large'> 
+     {% csrf_token %}
+     
+ <!--   
+    
+     <table> 
+             <tr> 
+                 <td> {{form.username.label}}</td>
+                 <td> {{form.username}}</td>
+             </tr>
+                 <td>{{form.password1.label}}</td>
+                 <td>{{form.password1}}</td>
+             </td>
+             </tr>
+                 <td>{{form.password2.label}}</td>
+                 <td>{{form.password2}}</td>
+             </td>
+     
+    </table>
+   -->
+     {{form.as_p}} 
+    <button type='submit' style= 'margin-left:330px; margin-top: 20px; margin-bottom: 30px; color:green;'>Sign Up </button>
+       
+    </form> 
+
+    <p class = 'w3-large'>If you already have an account, please <a href= '{% url 'login' %}'>Login</a> instead</p>
+</div>
+
+{% endblock %}
