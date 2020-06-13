@@ -1,0 +1,159 @@
+.container {
+  background-image: url("./Components/images/back.png");
+  min-width: 100vw;
+  min-height: 100vh;
+}
+#cards {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -40px;
+
+  z-index: -1;
+}
+
+#board {
+  position: absolute;
+  left: 40%;
+  top: 30%;
+  display: flex;
+}
+.images {
+  display: inline;
+}
+img {
+  max-width: 60px;
+  height: 60px;
+}
+.table {
+  border-radius: 50%;
+
+  text-align: center;
+  font-size: 90px;
+  font-family: sans-serif;
+  color: grey;
+  width: 800px;
+  height: 440px;
+
+  position: absolute;
+  background-color: green;
+  border: 20px solid brown;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#room {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.playerInfo {
+  padding-top: 10px;
+  margin-top: 30px;
+  font-size: 16px;
+
+  color: lightyellow;
+
+  width: 10vw;
+  height: 5vw;
+  background-color: #334235;
+  border-radius: 20%;
+  z-index: 2;
+}
+#wager {
+  font-size: 16px;
+}
+.player {
+  /* background-image: url('https://store.playstation.com/store/api/chihiro/00_09_000/container/NZ/en/999/EP4067-NPEB01320_00-AVPOPULUSM001761/1550727215000/image?w=240&h=240&bg_color=000000&opacity=100&_version=00_09_000'); */
+  display: inline-block;
+  justify-content: center;
+
+  text-align: center;
+
+  background-size: contain;
+
+  width: 10vw;
+  height: 8vw;
+
+  border-radius: 45%;
+  z-index: 1;
+  position: absolute;
+}
+#player1 {
+  top: 8%;
+  left: -5%;
+}
+#player2 {
+  top: -15%;
+  left: 15%;
+}
+#player3 {
+  top: -20%;
+  left: 45%;
+}
+#player4 {
+  top: -10%;
+  left: 75%;
+}
+
+#player5 {
+  top: 25%;
+  left: 90%;
+}
+
+#player6 {
+  top: 70%;
+  left: 75%;
+}
+#player7 {
+  top: 85%;
+  left: 45%;
+}
+#player8 {
+  top: 80%;
+  left: 15%;
+}
+#player9 {
+  top: 50%;
+  left: -5%;
+}
+button {
+  font-size: 14px;
+  height: 50px;
+  min-width: 100px;
+  background-color: lightblue;
+  border-radius: 36%;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  overflow: hidden;
+  padding: 15px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #495a33;
+
+  top: 60%;
+  left: 85%;
+}
+#call {
+  background-color: lightgreen;
+  border: lightgreen;
+}
+#bet {
+  background-color: grey;
+  border: grey;
+}
+#fold {
+  background-color: brown;
+  border: brown;
+}
+input {
+}
