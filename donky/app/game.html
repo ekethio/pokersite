@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Poker Table</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="client.js"></script>
+    <link rel="stylesheet" href="game.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="player" id="player1">
+        <button id="emptySeat1">Take Seat1</button>
+        <div class="playerInfo" id="player1Info" style="display: none;">
+          <div id="username1"></div>
+          <div id="stack1"></div>
+        </div>
+      </div>
+      <div class="player" id="player2">
+        <button id="emptySeat2">Take Seat</button>
+        <div class="playerInfo" id="player2Info" style="display: none;">
+          <div id="username2"></div>
+          <div id="stack2"></div>
+        </div>
+      </div>
+      <div class="player" id="player3">
+        <button id="emptySeat3">Take Seat</button>
+        <div class="playerInfo" id="player3Info" style="display: none;">
+          <div id="username3"></div>
+          <div id="stack3"></div>
+        </div>
+      </div>
+      <div class="player" id="player4">
+        <button id="emptySeat4">Take Seat</button>
+        <div class="playerInfo" id="player4Info" style="display: none;">
+          <div id="username4"></div>
+          <div id="stack4"></div>
+        </div>
+      </div>
+      <div class="player" id="player5">
+        <button id="emptySeat5">Take Seat</button>
+        <div class="playerInfo" id="player5Info" style="display: none;">
+          <div id="username5"></div>
+          <div id="stack5"></div>
+        </div>
+      </div>
+      <div class="player" id="player6">
+        <button id="emptySeat6">Take Seat</button>
+        <div class="playerInfo" id="player6Info" style="display: none;">
+          <div id="username6"></div>
+          <div id="stack6"></div>
+        </div>
+      </div>
+      <div class="player" id="player7">
+        <button id="emptySeat7">Take Seat</button>
+        <div class="playerInfo" id="player7Info" style="display: none;">
+          <div id="username7"></div>
+          <div id="stack7"></div>
+        </div>
+      </div>
+      <div class="player" id="player8">
+        <button id="emptySeat8">Take Seat</button>
+        <div class="playerInfo" id="player8Info" style="display: none;">
+          <div id="username8"></div>
+          <div id="stack8"></div>
+        </div>
+      </div>
+      <div class="player" id="player9">
+        <button id="emptySeat9">Take Seat</button>
+        <div class="playerInfo" id="player9Info" style="display: none;">
+          <div id="username9"></div>
+          <div id="stack9"></div>
+        </div>
+      </div>
+
+      <div class="table">
+        <span id="room"
+          ><i> <strong>EkRoom </strong> </i></span
+        >
+      </div>
+
+      <div class="buttons">
+        <button type="submit" id="call">Call</button>
+        <button type="submit" id="bet">
+          Bet
+        </button>
+        <button type="submit" id="fold">
+          Fold
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
