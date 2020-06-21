@@ -23,7 +23,9 @@ app.use(bodyParser.json());
 let ids = Object.keys(io.sockets.clients().connected);
 
 // Create actual Game object
-const pokerGame = new Game(io);
+
+games = {}
+
 
 
 app.get("/", (req, res) => {
@@ -32,17 +34,37 @@ app.get("/", (req, res) => {
 app.use(express.static(__dirname + "/static"));
 
 io.on("connection", (socket) => {
-  socket.emit("welcome", {
+ 
+  
+  socket.on('findTable', ({table}) =>{
+       let pokerGame;
+       if (table in games){
+         pokerGame = games[table];
+       }
+       else{
+        pokerGame  = new Game(io, table)
+        games[table] = pokerGame;
+       }
+    socket.join(table);
+    socket.emit("welcome", {
     players: pokerGame.masterList,
-    board: pokerGame.board,
-    bb: pokerGame.bigBlind,
+    board:pokerGame.currentHand? pokerGame.currentHand.boardCards: [],
+    maxWager: pokerGame.currentHand? pokerGame.currentHand.currentMaxWager :0,
+    currentPlayer: pokerGame.currentHand? pokerGame.currentHand.playerList
+        .getCurrentPlayer()
+        .getUsername(): null,
+   minLegalRaise:  pokerGame.currentHand? pokerGame.currentHand.currentLegalMinRaise: 0
+  });
+       
   });
 
-  socket.on("join", ({ seat, name, buyin }) => {
+  socket.on("join", ({ seat, table, name, buyin }) => {
     const player = new Player(name, socket.id, buyin, seat);
+    const pokerGame = games[table];
     pokerGame.addPlayer(player, seat);
     players = pokerGame.masterList;
-    io.emit("new user", { players });
+  
+    io.to(table).emit("new user", { players });
     console.log(name + " joined");
 
     if (  pokerGame.returnPlayers().length > 1 &&
@@ -51,9 +73,10 @@ io.on("connection", (socket) => {
     }
   });
   
-  socket.on("action", (action) => {
+  socket.on("action", ({action, table}) => {
+    const pokerGame = games[table];
     pokerGame.currentHand.updateGameState(action);
-    io.emit("actionRequested", {
+    io.to(table).emit("actionRequested", {
       players: pokerGame.masterList,
       board: pokerGame.currentHand.boardCards,
       maxWager: pokerGame.currentHand.currentMaxWager,

@@ -11,8 +11,9 @@ const { assignAllPots } = require(".././utils/assignPots.js");
 
 
 class Hand {
-  constructor(players, game, io, bigBlindAmount, handNum, buttonPlayer) {
+  constructor(players, game, table, io, bigBlindAmount, handNum, buttonPlayer) {
     this.HAND_ID = handNum;
+    this.table = table;
     this.players = [...players];
     this.playerList = new PlayerList(players, buttonPlayer);
     this.BIG_BLIND = bigBlindAmount;
@@ -106,7 +107,7 @@ class Hand {
   async dealRemainingBoardCards() {
     while (this.boardCards.length < 5) {
       this.dealCards(1)
-      this.io.emit("run out", {
+      this.io.to(this.table).emit("run out", {
         players: this.game.masterList,
         board: this.boardCards,
       });
@@ -320,7 +321,7 @@ class Hand {
       if (this.street == Streets.PREFLOP) {
         
         this.issueBlinds();
-        this.io.emit("actionRequested", {
+        this.io.to(this.table).emit("actionRequested", {
           players: this.game.masterList,
           board: this.boardCards,
           maxWager: this.currentMaxWager,
@@ -338,7 +339,8 @@ class Hand {
                  break; 
              }
           }  
-          this.io.emit("actionRequested", {
+          this.io.to(this.table).emit("actionRequested", {
+          
             players: this.game.masterList,
             board: this.boardCards,
             maxWager: this.currentMaxWager,

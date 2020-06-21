@@ -7,7 +7,7 @@ const { GameStatus } = require("../utils/enums.js");
 const TABLE_SEATS = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 class Game {
-  constructor(io) {
+  constructor(io, table) {
  
     this.masterList = Object.assign(
       {},
@@ -15,6 +15,7 @@ class Game {
     );
     this.handHistory = [];
     this.results = [];
+    this.table = table;
     this.playerToAct = null;
     this.bigBlind = 2;
     this.board = [];
@@ -38,6 +39,7 @@ class Game {
       this.currentHand = new Hand(
         Object.values(this.masterList).filter((player) => player != null),
         this,
+        this.table,
         this.io,
         this.bigBlind,
         handNum,
@@ -49,7 +51,7 @@ class Game {
     }
     this.gameStatus = GameStatus.NOT_STARTED;
     this.board = [];
-    this.io.emit("gameEnded", { players: this.masterList, board: [] });
+    this.io.to(table).emit("gameEnded", { players: this.masterList, board: [] });
   }
 
   endHand() {

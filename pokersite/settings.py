@@ -20,10 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q7_gc+_#hjbs)17$=-04i_uht%uy%c4jf!w%p0_ngea17ggtk_'
+#SECRET_KEY = 'q7_gc+_#hjbs)17$=-04i_uht%uy%c4jf!w%p0_ngea17ggtk_'
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -124,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'game', "build", 'static'),
+    os.path.join(BASE_DIR, 'client', "build", 'static'),
     os.path.join(BASE_DIR, 'static'),# update the STATICFILES_DIRS
 )
 
